@@ -3,7 +3,7 @@ constructor(x,y,radius){
 
     var option ={
     isStatic: false,
-    restitution: 0.8,
+    restitution: 0.6,
     friction: 0.5,
     density: 1.2
     }
