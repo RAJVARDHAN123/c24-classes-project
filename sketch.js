@@ -1,61 +1,65 @@
-
+//-------------------------------------------- CRUMPLED BALL-1-------------------------------------------------------------
+// creating engine
 const Engine = Matter.Engine;
+//creating world
 const World = Matter.World;
+//creating bodies
 const Bodies = Matter.Bodies;
+//creating body
 const Body = Matter.Body;
 
+//creating variable of world and world
 var engine,world;
-var ground1;
-var dustbin1,paper1;
-function preload()
-{
-	
-}
 
-
+// --------------------------------------------SETUP FUNCTION--------------------------------------------------------------------
 function setup() {
-	createCanvas(1200, 400);
+  //creating canvas of 1200 height and 800 width
+	createCanvas(1200, 800);
 
-
-	engine = Engine.create();
+// creating Engine inside Engine variable  
+  engine = Engine.create();
+  
+// creating world inside Engine's world  
   world = engine.world;
   
- 
+  // creating Ground
+  Ground = new Ground(width/2,height,width,20);
+  //creating a waste paper
+  paper = new Paper(200,200,20);  
 
-	//Create the Bodies Here.
- 
+  //creating Dustbin with all the sides
+  dustbinright = new Dustbin(900,height - height/10,15,140);
+  dustbinleft = new Dustbin(1100,height - height/10,15,140);
+  dustbinbase = new Dustbin(1000,height - height/41,200,15);
 
-  paper1=new Paper(150,320,25);
-  dustbin1=new Dustbin(800,325,15,100);
-  dustbin2=new Dustbin(900,380,200,15);
-  dustbin3=new Dustbin(1000,325,15,100);
-  ground1=new Ground(600,392.5,1200,15);
-	
+  //giving Gravity
+	Engine.run(engine);
   
 }
 
-
+//--------------------------------------------------------------DRAW FUNCTION -----------------------------------------------------
 function draw() {
   
+  rectMode(CENTER);
+
+  //giving black color to background 
   background(0);
+ 
+  // display the Items 
+  Ground.display();
 
-  Engine.update(engine);
+  paper.display();
   
+  dustbinright.display();
+  dustbinleft.display();
+  dustbinbase.display();
 
-  paper1.display();
-  dustbin1.display();
-  dustbin2.display();
-  dustbin3.display();
-  ground1.display();
-
-
+  drawSprites();
+ 
 }
-function keyPressed()
-{
-  if(keyCode === UP_ARROW)
-  {
-    Body.applyForce(paper1.body,paper1.body.position,{x:115,y:-115});
+
+function keyPressed(){
+  if(keyCode === UP_ARROW) {
+    Matter.Body.applyForce(paper.body, paper.body.position, {x:80, y: -80})
   }
 }
-
-
