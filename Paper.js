@@ -3,8 +3,8 @@ constructor(x,y,radius){
 
     var option ={
     isStatic: false,
-    restitution: 0.6,
-    friction: 0.5,
+    restitution: 0.8,
+    friction: 10,
     density: 1.2
     }
 
@@ -17,11 +17,8 @@ constructor(x,y,radius){
 display(){
 
     var pos = this.body.position;
-    var angle = this.body.angle;
 
     push()
-    translate(pos);
-    rotate(angle);
     ellipseMode(RADIUS);
     strokeWeight(4);
     stroke("yellow");
